@@ -4,19 +4,19 @@ displayName: Git Clone
 description: Clone the selected repository to the build machine.
 inputs:
 - key: "AC_GIT_URL"
-  defaultValue: "$AC_REPOSITORY_URL"
+  defaultValue: "$AC_GIT_URL"
   isRequired: true
   title: Git Url
   description: Url of the repository.
   helpText:
 - key: "AC_GIT_COMMIT"
-  defaultValue: "$AC_COMMIT_HASH"
+  defaultValue: "$AC_GIT_COMMIT"
   isRequired: false
   title: Commit
   description: Commit of the repository.
   helpText:
 - key: "AC_GIT_BRANCH"
-  defaultValue: "$AC_BRANCH_NAME"
+  defaultValue: "$AC_GIT_BRANCH"
   isRequired: false
   title: Branch
   description: Branch of the repository.
