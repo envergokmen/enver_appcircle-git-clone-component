@@ -39,6 +39,7 @@ inputs:
   helpText:
 outputs:
 - key: "AC_REPOSITORY_DIR"
+  title: Repository Directory
   defaultValue: "AC_REPOSITORY_DIR"
   description: Specifies the cloned repository directory.
   helpText:
