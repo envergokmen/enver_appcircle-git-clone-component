@@ -1,8 +1,8 @@
 # Appcircle Git Clone
 
-Clones the Git repository with given arguments.
+Clones the Git repository to the build agent with the given arguments.
 
-You can use this component with 3 options:
+You can use this component with the following options:
 - git branch name (latest commit)
 - git branch name and git commit hash
 - git tag
@@ -10,7 +10,7 @@ You can use this component with 3 options:
 Required Input Variables
 - `$AC_GIT_URL`: Specifies the Git URL of the project repository
 
-Optinal Input Variables
+Optional Input Variables
 - `$AC_GIT_COMMIT`: Specifies the commit of the Git repository to be built
 - `$AC_GIT_BRANCH`: Specifies the branch of the Git repository to be built
 - `$AC_GIT_LFS`: Used to specify whether large files will be downloaded. Defaults to `false`
