@@ -18,7 +18,7 @@ options[:repository_path] = "#{temporary_path}/Repository"
 Dir.mkdir("#{options[:repository_path]}")
 
 def run_command(command)
-  puts "@[command] #{command}"
+  puts "@@[command] #{command}"
   status = nil
   stdout_str = nil
   stderr_str = nil
