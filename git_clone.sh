@@ -121,10 +121,10 @@ fi
     fi
     runCommand git checkout --progress --force "${REFERENCE}"
 
-    # if [ "$SUBMODULE" = true ] ; then
-    #     runCommand git submodule sync --recursive
-    #     runCommand git submodule update --init --force --recursive
-    # fi
+    if [ "$SUBMODULE" = true ] ; then
+        runCommand git submodule sync --recursive
+        runCommand git submodule update --init --force --recursive
+    fi
     
     runCommand git remote set-url origin "${GIT_URL}"
     runCommand git remote set-url --push origin "${GIT_URL}"
