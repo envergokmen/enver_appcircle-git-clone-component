@@ -7,6 +7,10 @@ end
 
 options = {}
 options[:git_url] = env_has_key("AC_GIT_URL") || raise("Git url can not be null.")
+if ENV["AC_GIT_CACHE_CREDENTIALS"] == "true"
+  options[:git_url] = options[:git_url].sub(/:(443|80)\//, "/")
+  run_command("git config --global credential.helper 'cache --timeout=7200'")
+end
 temporary_path = env_has_key("AC_TEMP_DIR") || raise("Temporary path can not be null.")
 options[:branch] = ENV["AC_GIT_BRANCH"]
 options[:tag] = ENV["AC_GIT_TAG"]
