@@ -5,22 +5,6 @@ def env_has_key(key)
 	return (ENV[key] == nil || ENV[key] == "") ? nil : ENV[key]
 end
 
-options = {}
-options[:git_url] = env_has_key("AC_GIT_URL") || raise("Git url can not be null.")
-if ENV["AC_GIT_CACHE_CREDENTIALS"] == "true"
-  options[:git_url] = options[:git_url].sub(/:(443|80)\//, "/")
-  run_command("git config --global credential.helper 'cache --timeout=7200'")
-end
-temporary_path = env_has_key("AC_TEMP_DIR") || raise("Temporary path can not be null.")
-options[:branch] = ENV["AC_GIT_BRANCH"]
-options[:tag] = ENV["AC_GIT_TAG"]
-options[:commit] = ENV["AC_GIT_COMMIT"]
-options[:lfs] = ENV["AC_GIT_LFS"]
-options[:submodule] = ENV["AC_GIT_SUBMODULE"]
-options[:repository_path] = "#{temporary_path}/Repository"
-
-Dir.mkdir("#{options[:repository_path]}")
-
 def run_command(command)
   puts "@@[command] #{command}"
   status = nil
@@ -39,6 +23,22 @@ def run_command(command)
     raise stderr_str
   end
 end
+
+options = {}
+options[:git_url] = env_has_key("AC_GIT_URL") || raise("Git url can not be null.")
+if ENV["AC_GIT_CACHE_CREDENTIALS"] == "true"
+  options[:git_url] = options[:git_url].sub(/:(443|80)\//, "/")
+  run_command("git config --global credential.helper 'cache --timeout=7200'")
+end
+temporary_path = env_has_key("AC_TEMP_DIR") || raise("Temporary path can not be null.")
+options[:branch] = ENV["AC_GIT_BRANCH"]
+options[:tag] = ENV["AC_GIT_TAG"]
+options[:commit] = ENV["AC_GIT_COMMIT"]
+options[:lfs] = ENV["AC_GIT_LFS"]
+options[:submodule] = ENV["AC_GIT_SUBMODULE"]
+options[:repository_path] = "#{temporary_path}/Repository"
+
+Dir.mkdir("#{options[:repository_path]}")
 
 sh_script_path = "#{File.expand_path(File.dirname(__FILE__))}/git_clone.sh"
 

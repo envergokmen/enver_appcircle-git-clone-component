@@ -41,7 +41,7 @@ inputs:
   isRequired: false
   defaultValue: "true"
   title: Cache Credentials
-  description: If this set to true, the credentials will be cached. This can be useful if same credentials are used for multiple repositories.
+  description: If this set to true, the credentials will be cached. This can be useful if the same credentials are used for multiple repositories.
   helpText:
 outputs:
 - key: "AC_REPOSITORY_DIR"
@@ -54,5 +54,3 @@ processArguments: '%AC_STEP_TEMP%/main.rb'
 files:
 - "main.rb"
 - "git_clone.sh"
-
-# CACHE CREDENTIALS
