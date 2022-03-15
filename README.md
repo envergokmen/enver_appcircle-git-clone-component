@@ -16,6 +16,7 @@ Optional Input Variables
 - `$AC_GIT_LFS`: Used to specify whether large files will be downloaded. Defaults to `false`
 - `$AC_GIT_TAG`: Tag of the repository
 - `AC_GIT_SUBMODULE`: Used to specify whether the submodule should be cloned.
+- `AC_GIT_CACHE_CREDENTIALS`: If this set to true, the credentials will be cached to memory. This can be useful if the same credentials are used for multiple repositories.
 
 Output Variables
 - `$AC_REPOSITORY_DIR`: Outputs the cloned repository directory.
