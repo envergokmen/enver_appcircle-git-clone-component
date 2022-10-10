@@ -26,7 +26,7 @@ end
 
 options = {}
 options[:git_url] = env_has_key("AC_GIT_URL") || raise("Git url can not be null.")
-if ENV["AC_GIT_CACHE_CREDENTIALS"] == "true"
+if ENV["AC_GIT_CACHE_CREDENTIALS"] != "false"
   options[:git_url] = options[:git_url].sub(/:(443|80)\//, "/")
   run_command("git config --global credential.helper 'cache --timeout=7200'")
 end
