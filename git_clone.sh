@@ -138,7 +138,7 @@ fi
 
     if [ "$IS_SPECIFIC_COMMIT" = true ]; then
         if [ ! -z "${BRANCH}" ]; then
-            runCommand git fetch origin "${BRANCH}"
+            runCommand GIT_CURL_VERBOSE=1 GIT_TRACE=1 git fetch origin "${BRANCH}"
         else
             runCommand git fetch
         fi
