@@ -94,6 +94,7 @@ fi
      $@
     }
 
+    runCommand echo "git_extra_params -> ${GIT_EXTRA_PARAMS}"
     runCommand git --version
     runCommand git lfs --version
     runCommand git init
