@@ -10,6 +10,7 @@ SUBMODULE=true
 LFS=true
 REFERENCE=''
 IS_SPECIFIC_COMMIT=false
+GIT_EXTRA_HEADERS=''
 for i in "$@"
 do
 case $i in
@@ -40,6 +41,10 @@ case $i in
     --submodule=*)
     SUBMODULE="${i#*=}"
     shift # past argument=value
+    ;;
+    --extraHeaders=*)
+    shift
+    GIT_EXTRA_HEADERS="${i#*=}"
     ;;
     --default)
     DEFAULT=YES
@@ -106,24 +111,24 @@ fi
 
     if [ "$IS_SPECIFIC_COMMIT" = true ]; then
         if [ ! -z "${BRANCH}" ]; then
-            runCommand git fetch origin "${BRANCH}"
+            runCommand git fetch origin "${BRANCH}" "${GIT_EXTRA_HEADERS}"
         else
-            runCommand git fetch
+            runCommand git fetch "${GIT_EXTRA_HEADERS}"
         fi
     else
-        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}"
-        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" | awk {'print $1'})
-        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1
+        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
+        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_HEADERS}" | awk {'print $1'})
+        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1 "${GIT_EXTRA_HEADERS}"
     fi
 
     if [ "$LFS" = true ] ; then
-        runCommand git lfs fetch origin "${REFERENCE}"
+        runCommand git lfs fetch origin "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
     fi
-    runCommand git checkout --progress --force "${REFERENCE}"
+    runCommand git checkout --progress --force "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
 
     if [ "$SUBMODULE" = true ] ; then
-        runCommand git submodule sync --recursive
-        runCommand git submodule update --init --force --recursive
+        runCommand git submodule sync --recursive "${GIT_EXTRA_HEADERS}"
+        runCommand git submodule update --init --force --recursive "${GIT_EXTRA_HEADERS}"
     fi
     
     runCommand git remote set-url origin "${GIT_URL}"
