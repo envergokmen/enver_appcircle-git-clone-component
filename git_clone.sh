@@ -113,29 +113,36 @@ fi
         runCommand git config remote.origin.lfsurl "${GIT_URL}/info/ls"
         runCommand git config remote.origin.lfspushurl "${GIT_URL}/info/ls"
     fi
+    
+    if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
+
+       GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
+       runCommand git config --add http.${GIT_URL_FOR_EXTRA_PARAM}.extraHeader ${GIT_EXTRA_PARAMS}
+       runCommand git config --add http.${GIT_URL_FOR_EXTRA_PARAM}/info/ls.extraHeader ${GIT_EXTRA_PARAMS}
+    fi
 
     fill
 
     if [ "$IS_SPECIFIC_COMMIT" = true ]; then
         if [ ! -z "${BRANCH}" ]; then
-            runCommand git fetch origin "${BRANCH}" "${GIT_EXTRA_PARAMS}"
+            runCommand git fetch origin "${BRANCH}"
         else
-            runCommand git fetch "${GIT_EXTRA_PARAMS}"
+            runCommand git fetch
         fi
     else
-        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
-        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_PARAMS}" | awk {'print $1'})
-        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1 "${GIT_EXTRA_PARAMS}"
+        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}"
+        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" | awk {'print $1'})
+        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1
     fi
 
     if [ "$LFS" = true ] ; then
-        runCommand git lfs fetch origin "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
+        runCommand git lfs fetch origin "${REFERENCE}"
     fi
-    runCommand git checkout --progress --force "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
+    runCommand git checkout --progress --force "${REFERENCE}" 
 
     if [ "$SUBMODULE" = true ] ; then
-        runCommand git submodule sync --recursive "${GIT_EXTRA_PARAMS}"
-        runCommand git submodule update --init --force --recursive "${GIT_EXTRA_PARAMS}"
+        runCommand git submodule sync --recursive
+        runCommand git submodule update --init --force --recursive
     fi
     
     runCommand git remote set-url origin "${GIT_URL}"
