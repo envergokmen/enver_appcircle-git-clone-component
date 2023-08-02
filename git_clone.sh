@@ -114,11 +114,11 @@ fi
         runCommand git config remote.origin.lfspushurl "${GIT_URL}/info/ls"
     fi
     
-    if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
+    #if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
        # GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
        #runCommand echo "GIT_URL_FOR_EXTRA_PARAM -> ${GIT_URL_FOR_EXTRA_PARAM}"
        #runCommand git config --local --add http.${GIT_URL}.extraHeader ${GIT_EXTRA_PARAMS}
-    fi
+    #fi
 
     fill
 
