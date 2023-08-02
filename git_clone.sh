@@ -115,9 +115,9 @@ fi
     fi
     
     if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
-        GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
+       # GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
        #runCommand echo "GIT_URL_FOR_EXTRA_PARAM -> ${GIT_URL_FOR_EXTRA_PARAM}"
-       runCommand git config --local --add http."${GIT_URL_FOR_EXTRA_PARAM}".extraHeader "${GIT_EXTRA_PARAMS}"
+       #runCommand git config --local --add http.${GIT_URL}.extraHeader ${GIT_EXTRA_PARAMS}
     fi
 
     fill
