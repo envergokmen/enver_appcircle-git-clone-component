@@ -100,7 +100,7 @@ fi
         GIT_EXTRA_PARAMS="${GIT_EXTRA_PARAMS%%\'}"
     fi
 
-    runCommand echo "env_git_clone_comp git_extra_params -> ${GIT_EXTRA_PARAMS}"
+    runCommand echo "env_git_clone_comp git_extra_params 17:54 -> ${GIT_EXTRA_PARAMS}"
     runCommand git --version
     runCommand git lfs --version
     runCommand git init
@@ -114,7 +114,7 @@ fi
         runCommand git config remote.origin.lfspushurl "${GIT_URL}/info/ls"
     fi
     
-    git config --global --add http.http://DefaultCollection:OjJiMms2MmVrb3JsaGx6bXplM2lld3hhZjVta3dyNGlqYmdvb3pvNHplcXY0aTV3cGwyNWE=@192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --global --add http.http://192.168.1.13:8989/DefaultCollection/.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
     git config --list | grep http.
     #if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
        # GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
