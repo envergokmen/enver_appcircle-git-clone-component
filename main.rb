@@ -43,7 +43,7 @@ Dir.mkdir("#{options[:repository_path]}")
 
 sh_script_path = "#{File.expand_path(File.dirname(__FILE__))}/git_clone.sh"
 
-command = "bash #{sh_script_path} --localPath=#{options[:repository_path]} --gitURL=#{options[:git_url]} --extraParams=#{options[:extra_params]}"
+command = "bash #{sh_script_path} --localPath=#{options[:repository_path]} --gitURL=#{options[:git_url]} --extraParams='#{options[:extra_params]}'"
 
 if options[:commit]
   if options[:branch]
