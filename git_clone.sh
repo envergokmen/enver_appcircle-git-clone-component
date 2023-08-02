@@ -106,6 +106,10 @@ fi
     runCommand git init
     runCommand git remote add origin "${GIT_URL}"
     runCommand git config gc.auto 0
+
+    git config --global --add http.http://192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --list | grep http.http://
+
     runCommand git remote set-url origin "${GIT_URL}"
     runCommand git remote set-url --push origin "${GIT_URL}"
     if [ "$LFS" = true ] ; then
@@ -114,8 +118,7 @@ fi
         runCommand git config remote.origin.lfspushurl "${GIT_URL}/info/ls"
     fi
     
-    git config --global --add http.http://192.168.1.13:8989/DefaultCollection/.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
-    git config --list | grep http.
+
     #if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
        # GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
        #runCommand echo "GIT_URL_FOR_EXTRA_PARAM -> ${GIT_URL_FOR_EXTRA_PARAM}"
