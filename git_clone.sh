@@ -110,6 +110,11 @@ fi
     git config --global --add http.http://192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
     git config --global --add http.http://192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.git/info/ls.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
     git config --global --add http.http://192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android/info/ls.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --global --add http.http://DefaultCollection:Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E=@192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android/info/ls.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --global --add http.http://DefaultCollection:Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E=@192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.git/info/ls.extraHeader "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --global --add http.http://DefaultCollection:Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E=@192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android.git "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+    git config --global --add http.http://DefaultCollection:Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E=@192.168.1.13:8989/DefaultCollection/Appcircle/_git/appcircle-sample-android "AUTHORIZATION: Basic Om1sM253eWt5ZGtpam42M2pnaGNxeTJtd3Z2djY3ZjUyZzRibng0cTVndWZteGtmcW1la3E="
+
     
     git config --list | grep http.http://
 
