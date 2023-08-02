@@ -10,7 +10,7 @@ SUBMODULE=true
 LFS=true
 REFERENCE=''
 IS_SPECIFIC_COMMIT=false
-GIT_EXTRA_HEADERS=''
+GIT_EXTRA_PARAMS=''
 for i in "$@"
 do
 case $i in
@@ -42,9 +42,9 @@ case $i in
     SUBMODULE="${i#*=}"
     shift # past argument=value
     ;;
-    --extraHeaders=*)
+    --extraParams=*)
     shift
-    GIT_EXTRA_HEADERS="${i#*=}"
+    GIT_EXTRA_PARAMS="${i#*=}"
     ;;
     --default)
     DEFAULT=YES
@@ -111,24 +111,24 @@ fi
 
     if [ "$IS_SPECIFIC_COMMIT" = true ]; then
         if [ ! -z "${BRANCH}" ]; then
-            runCommand git fetch origin "${BRANCH}" "${GIT_EXTRA_HEADERS}"
+            runCommand git fetch origin "${BRANCH}" "${GIT_EXTRA_PARAMS}"
         else
-            runCommand git fetch "${GIT_EXTRA_HEADERS}"
+            runCommand git fetch "${GIT_EXTRA_PARAMS}"
         fi
     else
-        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
-        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_HEADERS}" | awk {'print $1'})
-        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1 "${GIT_EXTRA_HEADERS}"
+        runCommand git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
+        REFERENCE=$(git ls-remote "${GIT_URL}" "${REFERENCE}" "${GIT_EXTRA_PARAMS}" | awk {'print $1'})
+        runCommand git fetch --tags --prune --progress --no-recurse-submodules origin "${REFERENCE}" --depth=1 "${GIT_EXTRA_PARAMS}"
     fi
 
     if [ "$LFS" = true ] ; then
-        runCommand git lfs fetch origin "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
+        runCommand git lfs fetch origin "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
     fi
-    runCommand git checkout --progress --force "${REFERENCE}" "${GIT_EXTRA_HEADERS}"
+    runCommand git checkout --progress --force "${REFERENCE}" "${GIT_EXTRA_PARAMS}"
 
     if [ "$SUBMODULE" = true ] ; then
-        runCommand git submodule sync --recursive "${GIT_EXTRA_HEADERS}"
-        runCommand git submodule update --init --force --recursive "${GIT_EXTRA_HEADERS}"
+        runCommand git submodule sync --recursive "${GIT_EXTRA_PARAMS}"
+        runCommand git submodule update --init --force --recursive "${GIT_EXTRA_PARAMS}"
     fi
     
     runCommand git remote set-url origin "${GIT_URL}"
