@@ -118,7 +118,7 @@ fi
 
        GIT_URL_FOR_EXTRA_PARAM="${GIT_URL%.git}"
        runCommand echo "GIT_URL_FOR_EXTRA_PARAM -> ${GIT_URL_FOR_EXTRA_PARAM}"
-       runCommand git config --add http."${GIT_URL_FOR_EXTRA_PARAM}"/.extraHeader "${GIT_EXTRA_PARAMS}"
+       runCommand git config --global --add http.${GIT_URL_FOR_EXTRA_PARAM}.extraHeader ${GIT_EXTRA_PARAMS}
     fi
 
     fill
