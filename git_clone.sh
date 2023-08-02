@@ -93,6 +93,12 @@ fi
      echo $@
      $@
     }
+ 
+    if [ ! -z "${GIT_EXTRA_PARAMS}" ] ; then
+        # Remove single quotes from the beginning and ending of the variable
+        GIT_EXTRA_PARAMS="${GIT_EXTRA_PARAMS##\'}"
+        GIT_EXTRA_PARAMS="${GIT_EXTRA_PARAMS%%\'}"
+    fi
 
     runCommand echo "git_extra_params -> ${GIT_EXTRA_PARAMS}"
     runCommand git --version
